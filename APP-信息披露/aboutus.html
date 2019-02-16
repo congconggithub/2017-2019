@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息披露</title>
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script src="https://image.gcs1688.com/static/common/common.min.js"></script>
+    <script src="https://image.gcs1688.com/static/common/jquery.lazyload.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/new/css/aboutus.css?v=1"/>
+</head>
+
+
+<body>
+<div class="wrap">
+    <div class="swiper-container nav" id="swiper" >
+            <ul class="swiper-wrapper" id="title">
+                <li class="span_high swiper-slide span_left"><span>合规进程</span></li>
+                <li class="swiper-slide span_left"><span>组织信息</span></li>
+                <li class="swiper-slide"><span>银行存管</span></li>
+                <li class="swiper-slide"><span>数据披露</span></li>
+                <li class="swiper-slide"><span>安全保障</span></li>
+                <li class="swiper-slide span_left"><span>资质荣誉</span></li>
+            </ul>
+        <!--</div>-->
+    </div>
+
+    <div class="main_div" style="padding-top: 1.067rem">
+
+    </div>
+</div>
+
+<script>
+    $(document).on('click','#title li', function () {
+        var index = $(this).index()+1;
+        $(this).addClass('span_high').siblings().removeClass('span_high');
+        $.get("/Client/aboutusPage?page="+index, function(result){
+            $(".main_div").html(result);
+        });
+    })
+
+    jQuery(function () {
+
+        var _index = parseInt("{$_GET['id']}");
+        _index = isNaN(_index) ? 0 : _index;
+        $('#title li').eq(_index).click();
+
+
+        //解决移动端点击延迟事件
+        FastClick.attach(document.body);
+
+        var headswiper = new Swiper('.swiper-container', {
+//        pagination: '.swiper-pagination',
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: 0
+        });
+
+        if (_index >2 && _index<6){
+            headswiper.slideTo(4,200,false);
+        }
+
+    });
+
+</script>
+</body>
+</html>
