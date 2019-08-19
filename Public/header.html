@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--<link href="__PUBLIC__/admin/images/admin_icon.png" rel="apple-touch-icon-precomposed">-->
+
+<!--<link href="__PUBLIC__/admin/images/admin_icon.png" sizes="114x114" rel="apple-touch-icon-precomposed">-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;IE=8" />
+<!-- HTTP 1.1 -->
+<meta http-equiv="pragma" content="no-cache">
+<!-- HTTP 1.0 -->
+<meta http-equiv="cache-control" content="no-cache">
+
+<meta http-equiv="expires" content="0">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>『{:C('COMPANY_NAME')}管理平台』</title>
+<!--<load href='__PUBLIC__/admin/auth/css/blue.css' />-->
+<load href='__PUBLIC__/admin/css/style.css' />
+<!--<load href="__PUBLIC__/admin/auth/js/Base.js" />-->
+<!--<load href="__PUBLIC__/admin/auth/js/prototype.js" />-->
+<load href="__PUBLIC__/admin/auth/js/jquery.js" />
+<!--<load href="__PUBLIC__/admin/auth/js/mootools.js" />-->
+<!--<load href="__PUBLIC__/admin/auth/js/Think/ThinkAjax.js" />-->
+<!--<load href="__PUBLIC__/admin/auth/js/Form/CheckForm.js" />-->
+
+<load href="__PUBLIC__/common/js/common.js" />
+<load href="__PUBLIC__/admin/auth/js/common.js" />
+<load href="__PUBLIC__/admin/layer/layer.min.js" />
+<!--laydate 时间插件 2018-3-20 -->
+<!-- <load href="__PUBLIC__/admin/laydate2/laydate.js" /> -->
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/admin/auth/js/Bootstrap/bootcss.css'> <!-- 官方文档 -->
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/admin/auth/css/style/bootslayout.css'>  <!--另外写的CSS -->
+<load  href='__PUBLIC__/admin/auth/js/Bootstrap/jQuery2.js' />
+<load  href='__PUBLIC__/admin/auth/js/Bootstrap/bootstrap.js' />
+<link rel="icon" href='__PUBLIC__/admin/images/favicon.ico' type="image/x-icon">
+
+    <script src="https://gcsoss.oss-cn-shanghai.aliyuncs.com/common/flexible/flexible_css.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://gcsoss.oss-cn-shanghai.aliyuncs.com/common/flexible/flexible.js" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript">
+<!--
+//指定当前组模块URL地址
+var SITE ="{:C('SITE_ROOT')}";
+var ROOT = '{:C("ADMIN_ROOT")}';
+var URL = '__URL__';
+var APP	 =	 '__APP__';
+var PUBLIC = '__PUBLIC__';
+//-->
+layer.config({
+    skin: 'layui-layer-molv',
+    closeBtn : 0
+});
+
+
+$(function () {
+    $('[required]').after('<span style="color:red">*</span>');
+    });
+</script>
+</head>
+<body>
+<div>
+    <div class=" col-md-12 col-lg-12 row header hidden-xs">
+        <!-- 头部 -->
+        <img src="__PUBLIC__/admin/auth/css/image/logo.png">
+        <div class="pull-right">
+            <span class="glyphicon"><img src="__PUBLIC__/admin/images/v2/newAdmin-user.png">{$Think.session.user_auth.username}</span>
+            <a href="{:C('ADMIN_ROOT')}/Index/password"><span class="glyphicon"><img src="__PUBLIC__/admin/images/v2/newAdmin-lock.png">修改密码</span></a>
+            <a href="javascript:void(0)" onclick="logout()"><span class="glyphicon"><img src="__PUBLIC__/admin/images/v2/newAdmin-logOut.png">退出</span></a>
+        </div>
+    </div>
+    <!--移动端的顶栏-->
+    <div class="navbar-header hidden-md hidden-lg hidden-sm">
+        <h2 class="header navbar-brand" style="margin:0;">高财生理财管理平台
+        </h2>
+        <button class="pull-right navbar-toggle collapsed " data-toggle="collapse" data-target="#mynavbar">
+            <!-- .icon-bar在bootstrap的2版本里已经诞生了 , 在3版本里延续 , 是小横条-->
+            <span class="glyphicon glyphicon-th-list"></span>
+        </button>
+
+       <!-- <div class="pull-left" style="padding: 0 15px 5px;">
+            <span >欢迎你！&nbsp; {$Think.session.user_auth.username}</span>
+        </div>-->
+    </div>
+</div>
+<script>
+
+
+    function logout(){
+        var url="{:U('Public/logout')}";
+        sessionStorage.removeItem('lis');
+        location.href=url;
+    };
+
+
+
+$(document).ready(function () {
+    $(".btn.btn-add").append('<img src="__PUBLIC__/admin/images/v2/plus.png" class="btnImg">');  /* "新增"按钮 */
+    $(".btn.btn-delete").append('<img src="__PUBLIC__/admin/images/v2/delete.png" class="btnImg">'); /* "删除"按钮 */
+    $(".btn.btn-recycle").prepend('<img src="__PUBLIC__/admin/images/v2/recycle.png" class="btnImg" style="margin-right: 10px;">'); /* "回收站"按钮 */
+});
+
+
+</script>
+<include file="Public:menu" />

@@ -1,0 +1,288 @@
+
+    <link rel="stylesheet" href="__PUBLIC__/admin/css/index.css">
+    <link rel="stylesheet" href="__PUBLIC__/admin/auth/css/style/bootslayout.css">
+
+    <div id="menu" class="menu">
+        <nav class="collapse navbar-collapse col-xs-12s col-sm-3 col-md-2  col-lg-2" role="navigation" id="mynavbar" style="max-width: 220px;">
+            <ul class=" nav navbar-default navbar-static-side " id="accordion" >
+
+            </ul>
+        </nav>
+    </div>
+
+    <div id="shareit-box">
+        <div id="shareit-header"></div>
+        <div id="shareit-body">
+            <div id="shareit-blank"></div>
+            <a href="{:C('ADMIN_ROOT')}/message/add/type/1" style="line-height: 45px;margin-left:7px;">系统消息</a>
+            <a href="{:C('ADMIN_ROOT')}/message/add/type/2">活动(单条)</a>
+            <a href="{:C('ADMIN_ROOT')}/message/add/type/3" style="margin-left:7px;">活动(多条)</a>
+            <a href="{:C('ADMIN_ROOT')}/message/add/type/4">项目消息</a>
+        </div>
+    </div>
+
+    <script src="https://gcsoss.oss-cn-shanghai.aliyuncs.com/common/js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        //页码样式
+        $(document).ready(function(){
+            $(".page div").children("").addClass("btn btn-page");
+        });
+
+        //解决移动端点击延迟事件
+        FastClick.attach(document.body);
+    </script>
+<!--
+<script language="JavaScript">
+
+
+	function refreshMainFrame(url) {
+		parent.main.document.location = url;
+	}
+
+	if (document.getElementsByTagName("a")[0].href) {
+        refreshMainFrame(document.getElementsByTagName("a")[0].href);
+	}
+
+    function toggle_sub(_parent){
+        $(".sub_" + _parent).toggle();
+    }
+
+</script>-->
+    <style>
+
+        @media (min-width: 768px){
+            .navbar-collapse.col-md-2 {
+                width: 16.66%;
+            }
+        }
+        @media (min-width: 992px){
+            .content.col-md-10 {
+                width: 80.33%;
+                max-width: 1000px;
+            }
+        }
+        @media (min-width: 1200px){
+            .navbar-collapse.col-lg-2 {
+                width: auto;
+            }
+            .content.col-lg-10 {
+                width: 83.33%;
+            }
+        }
+        @media (min-width: 1575px){
+            .content.col-lg-10 {
+                max-width: 1675px;
+            }
+        }
+
+        /* 页码样式 */
+        .panel-title {font-size: 18px;}
+        .pull-right .glyphicon img{width: 15px; height: auto; margin-left: 35px; }
+        .pull-right span {color:  #2f2f2f;}
+        .glyphicon img {width: 24px; height: 24px; margin-right: 11px;}
+        .glyphicon img.headPic {display:inline-block;}
+        .glyphicon img.headPic2 {display: none;}
+        .page {
+            float: right;
+        }
+        .page .current.btn{
+            background-color:#3366b7;
+            color:#ffffff;}
+        .visible-xs{
+            background-color: #586367;
+            width: 100%;
+            clear: both;
+            height: 125px;
+        }
+        .pic {
+            color: #dee0e0;
+        }
+        .pic img {
+            margin:35px 15px 35px 30px;
+            float: left;
+            width: 60px;
+            height: 60px;
+        }
+        .pic span {
+            float: left;
+            margin-top: 42px;
+            font-size: 16px;
+        }
+        .logOut {
+            float: right;
+            margin-top:55px;
+            margin-right: 40px;
+        }
+        .logOut p {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .logOut img{
+            width: 22px;
+            height: 23.3px;
+        }
+
+        /*.panel-heading.chosenHead .panel-title a{ color: #ff4040;}*/
+        /*.navbar-default.navbar-static-side li .panel-heading.chosenHead .panel-title a { color: #ff4040;}*/
+
+
+
+        #shareit-box {position:absolute;display:none;}
+        #shareit-header {width:138px;}
+        #shareit-body {width:138px; height:100px;background:url(__PUBLIC__/admin/images/shareit.png);}
+        #shareit-blank {height:20px;}
+        #shareit-icon ul {list-style:none;width:130px;margin:0; padding:0 0 0 8px;}
+        #shareit-icon ul  li{float:left;padding:0 2px;}
+        #shareit-icon ul  li img{border:none;}
+    </style>
+<script>
+    $(document).ready(function() {
+        //grab all the anchor tag with rel set to shareit
+        $('a[rel=shareit], #shareit-box').mouseenter(function() {
+
+            //get the height, top and calculate the left value for the sharebox
+            var height = $(this).height();
+            var top = $(this).offset().top;
+
+            //get the left and find the center value
+            var left = $(this).offset().left + ($(this).width() /2) - ($('#shareit-box').width() / 2);
+
+            //grab the href value and explode the bar symbol to grab the url and title
+            //the content should be in this format url|title
+            var value = $(this).attr('href').split('|');
+
+            //assign the value to variables and encode it to url friendly
+            var field = value[0];
+            var url = encodeURIComponent(value[0]);
+            var title = encodeURIComponent(value[1]);
+
+            //assign the height for the header, so that the link is cover
+            $('#shareit-header').height(height);
+
+            //display the box
+            $('#shareit-box').show();
+
+            //set the position, the box should appear under the link and centered
+            $('#shareit-box').css({'top':top, 'left':left});
+        });
+
+        $('#shareit-box').mouseleave(function () {
+            $(this).hide();
+        });
+
+        $('#shareit-field').click(function () {
+            $(this).select();
+        });
+
+    });
+
+    var Li='';
+    function ulArr(arr){
+        arrLength = arr.length == undefined ?  Object.keys(arr).length : arr.length;
+        for(var i=0;i<arrLength;i++){
+            var lis= '';
+            var lens =  Object.keys(arr[i].sub).length;
+
+            for(var j=0;j<lens;j++){
+                lis +='<li><a href="{:C('ADMIN_ROOT')}/'+arr[i].sub[j].url+'">'+arr[i].sub[j].title+'</a></li>';
+            }
+
+            if(arr[i].url != undefined) {
+                Li += '<li class="oneLi headFirst"> '+
+                        '<a href="/admin.php' + arr[i].url + '" class="glyphicon"> ' +
+                        '<img class="headPic " src="__PUBLIC__/admin/images/v2/newAdmin-' + arr[i].icon + '.png">' +
+                        '<img class="headPic2" src="__PUBLIC__/admin/images/v2/newAdmin-' + arr[i].icon + '2.png">' + arr[i].title +
+                '       </a>' +
+                '   </li>';
+            } else {
+                Li+='<li class="panel"> ' +
+                    '   <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#'+arr[i].name+'" data-id="#'+arr[i].name+'" > ' +
+                    '       <div class="panel-title"> ' +
+                    '           <a class=" glyphicon " href="javascript:void(0)" >' +
+                    '               <img class="headPic" src="__PUBLIC__/admin/images/v2/newAdmin-'+arr[i].name+'.png"><img class="headPic2" src="__PUBLIC__/admin/images/v2/newAdmin-'+arr[i].name+'2.png">'+arr[i].title+
+                    '              <span class="caret" ></span> ' +
+                    '           </a> ' +
+                    '       </div> ' +
+                    '   </div> ' +
+                    '   <ul id="'+arr[i].name+'" class="panel-collapse collapse"> ' +
+                    '       <div class="panel-body">'+lis+' </div>' +
+                    '   </ul>' +
+                    '</li>';
+            }
+
+        }
+        logOutLi ='<div class="visible-xs"><div class="pic "><img src="__PUBLIC__/admin/images/v2/newAdmin-user.png"><span ><br>{$Think.session.user_auth.username}</span></div> ' +
+            '<div class="logOut"><a href="{:C('ADMIN_ROOT')}/Public/logout"><img src="__PUBLIC__/admin/images/v2/newAdmin-logOut.png"></a></div></div>';
+        Li= logOutLi+
+            '<li class="oneLi headFirst"> ' +
+            '   <a href="{:C('ADMIN_ROOT')}/Public/mainNew" class="glyphicon"> ' +
+        '           <img class="headPic " src="__PUBLIC__/admin/images/v2/newAdmin-mainNew.png">' +
+        '               <img class="headPic2" src="__PUBLIC__/admin/images/v2/newAdmin-mainNew2.png">数据总览 ' +
+        '       </a>' +
+        '   </li> '+ Li;
+
+        return Li
+    }
+
+    var lis = {};
+    if(!sessionStorage.getItem('lis')){
+        $.ajax({
+            url : '{:U("public/menu")}',
+            async:false,
+            success : function (result) {
+                lis =result.menu.length>0?ulArr(result.menu):ulArr([]);
+                $('.navbar-static-side').html(lis)
+
+                sessionStorage.setItem('lis', lis);
+            }
+        });
+    } else{
+        lis = sessionStorage.getItem('lis');
+        $('.navbar-static-side').html(lis);
+    }
+
+    var panel = document.querySelectorAll('.panel'),
+        headList = document.querySelectorAll('.panel-heading'),
+        oneLi = document.querySelectorAll('.oneLi');
+
+    //次级页面对应导航设置
+    var current = ('{:C('ADMIN_ROOT')}/{:CONTROLLER_NAME}' + '/' + '{:ACTION_NAME}').toLowerCase();
+
+    //"后台首页"选中样式
+    $(".oneLi a").each(function(){
+        var oneHref = ((this).href).toLowerCase();
+        if(oneHref == current){
+            sessionStorage.removeItem("session_href");
+            this.style.color = '#cf2c2c';
+            this.style.borderRight=' 4px solid #ff4040';
+            this.querySelector(".headPic2").style.display="inline-block";
+            this.querySelector(".headPic").style.display="none";
+        }
+    });
+
+//    列表选中样式
+    for(var i=0,len=panel.length;i<len;i++){
+        var a_list = panel[i].querySelectorAll('.panel-body li a');
+        for(var j=0,lens=a_list.length;j<lens;j++){
+            var a_list_href = a_list[j].href.toLowerCase();
+            if(a_list_href == current ){
+                sessionStorage.setItem("session_href", current);
+                sessionStorage.setItem("headList", i);
+                sessionStorage.setItem("secList", j);
+            }
+        }
+    }
+
+    var nowHref = sessionStorage.getItem("session_href");
+
+    i = sessionStorage.getItem('headList')
+    j = sessionStorage.getItem('secList')
+    if(nowHref){
+        headList[i].click();
+        headList[i].setAttribute("class","panel-heading chosenHead")
+        headList[i].querySelector(".headPic").style.display="none";
+        headList[i].querySelector(".headPic2").style.display="inline-block";
+        panel[i].querySelectorAll('.panel-body li a')[j].parentNode.style.backgroundColor = '#eee';
+    }
+</script>
+

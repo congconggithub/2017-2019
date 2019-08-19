@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="__PUBLIC__/admin/images/admin_icon.png" rel="apple-touch-icon-precomposed">
+    <link href="__PUBLIC__/admin/images/admin_icon.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- HTTP 1.1 -->
+    <meta http-equiv="pragma" content="no-cache">
+    <!-- HTTP 1.0 -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>『{:C('COMPANY_NAME')}管理平台』</title>
+    <!--<load href='__PUBLIC__/admin/auth/css/blue.css' />-->
+    <load href='__PUBLIC__/admin/css/style.css' />
+    <!--<load href="__PUBLIC__/admin/auth/js/Base.js" />-->
+    <!--<load href="__PUBLIC__/admin/auth/js/prototype.js" />-->
+    <load href="__PUBLIC__/admin/auth/js/jquery.js" />
+    <!--<load href="__PUBLIC__/admin/auth/js/mootools.js" />-->
+    <!--<load href="__PUBLIC__/admin/auth/js/Think/ThinkAjax.js" />-->
+    <!--<load href="__PUBLIC__/admin/auth/js/Form/CheckForm.js" />-->
+
+    <load href="__PUBLIC__/common/js/common.js" />
+    <load href="__PUBLIC__/admin/auth/js/common.js" />
+    <load href="__PUBLIC__/admin/layer/layer.min.js" />
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel='stylesheet' type='text/css' href='__PUBLIC__/admin/auth/css/style/bootslayout.css'>
+    <script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="icon" href='__PUBLIC__/admin/images/favicon.ico' type="image/x-icon">
+
+    <style type="text/css">
+        .page {
+            float: right;
+        }
+        .page .current.btn{
+            background-color:#3366b7;
+            color:#ffffff;}
+    </style>
+    <script language="JavaScript">
+        <!--
+        //指定当前组模块URL地址
+        var SITE ="{:C('SITE_ROOT')}";
+        var ROOT = '{:C("ADMIN_ROOT")}';
+        var URL = '__URL__';
+        var APP	 =	 '__APP__';
+        var PUBLIC = '__PUBLIC__';
+        //-->
+        layer.config({
+            skin: 'layui-layer-molv',
+            closeBtn : 0
+        });
+
+
+        $(function () {
+            $('[required]').after('<span style="color:red">*</span>');
+        });
+
+        //页码样式
+        $(document).ready(function(){
+            $(".page div").children("").addClass("btn btn-page");
+        });
+
+
+    </script>
+</head>
+
+<body>
+
+<div>
+    <div class=" col-md-12 col-lg-12 row header">
+        <!-- 头部 -->
+        <img src="__PUBLIC__/admin/auth/css/image/logo.png">
+
+    </div>
+
+</div>
